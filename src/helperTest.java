@@ -158,6 +158,7 @@ public abstract class helperTest extends JFrame implements ButtonModel
                 {
                     public void actionPerformed(ActionEvent event)
                     {
+                        try{
                         if (x == 1)
                         {
                             double pribMin = Double.parseDouble(minpribor.getText().trim());
@@ -178,15 +179,19 @@ public abstract class helperTest extends JFrame implements ButtonModel
                             double z = ((preobRasch - preobMin)* (pribMax - pribMin))/ (preobMax - preobMin);
                             raschpribor.setText(""+ z);
                         }
-                        else if (x == 3)
-                        {
+                        else if (x == 3) {
                             double pribMin = Double.parseDouble(minpribor.getText().trim());
-                            double pribMax =Double.parseDouble(maxpribor.getText().trim());
+                            double pribMax = Double.parseDouble(maxpribor.getText().trim());
                             double preobMin = Double.parseDouble(minpreobr.getText().trim());
                             double preobMax = Double.parseDouble(maxpreobr.getText().trim());
                             double preobRasch = Double.parseDouble(raschpreobr.getText().trim());
-                            double z = (preobRasch - preobMin)* pribMax / (preobMax - preobMin);
-                            raschpribor.setText(""+ z);
+                            double z = (preobRasch - preobMin) * pribMax / (preobMax - preobMin);
+                            raschpribor.setText("" + z);
+                        }
+                        }
+                        catch(Exception e)
+                        {
+                            //error message
                         }
 
                     }
@@ -195,38 +200,39 @@ public abstract class helperTest extends JFrame implements ButtonModel
                 {
                     public void actionPerformed(ActionEvent event)
                     {
-                        if (x == 1)
-                        {
-                            double pribMin = Double.parseDouble(minpribor.getText().trim());
-                            double pribMax = Double.parseDouble(maxpribor.getText().trim());
-                            double preobMin = Double.parseDouble(minpreobr.getText().trim());
-                            double preobMax = Double.parseDouble(maxpreobr.getText().trim());
-                            double pribRasch = Double.parseDouble(raschpribor.getText().trim());
+                        try {
+                            if (x == 1) {
+                                double pribMin = Double.parseDouble(minpribor.getText().trim());
+                                double pribMax = Double.parseDouble(maxpribor.getText().trim());
+                                double preobMin = Double.parseDouble(minpreobr.getText().trim());
+                                double preobMax = Double.parseDouble(maxpreobr.getText().trim());
+                                double pribRasch = Double.parseDouble(raschpribor.getText().trim());
 
-                            double c = (((pribRasch - pribMin)/ (pribMax - pribMin )) * (preobMax - preobMin )) + preobMin;
-                            raschpreobr.setText(""+ c);
+                                double c = (((pribRasch - pribMin) / (pribMax - pribMin)) * (preobMax - preobMin)) + preobMin;
+                                raschpreobr.setText("" + c);
+                            } else if (x == 2) {
+                                double pribMin = Double.parseDouble(minpribor.getText().trim());
+                                double pribMax = Double.parseDouble(maxpribor.getText().trim());
+                                double preobMin = Double.parseDouble(minpreobr.getText().trim());
+                                double preobMax = Double.parseDouble(maxpreobr.getText().trim());
+                                double pribRasch = Double.parseDouble(raschpribor.getText().trim());
+
+                                double q = ((pribRasch / (pribMax - pribMin)) * (preobMax - preobMin)) + preobMin;
+                                raschpreobr.setText("" + q);
+                            } else if (x == 3) {
+                                double pribMin = Double.parseDouble(minpribor.getText().trim());
+                                double pribMax = Double.parseDouble(maxpribor.getText().trim());
+                                double preobMin = Double.parseDouble(minpreobr.getText().trim());
+                                double preobMax = Double.parseDouble(maxpreobr.getText().trim());
+                                double pribRasch = Double.parseDouble(raschpribor.getText().trim());
+
+                                double q = (pribRasch * (preobMax - preobMin) / pribMax) + preobMin;
+                                raschpreobr.setText("" + q);
+                            }
                         }
-                        else if (x == 2)
+                        catch(Exception e )
                         {
-                            double pribMin = Double.parseDouble(minpribor.getText().trim());
-                            double pribMax = Double.parseDouble(maxpribor.getText().trim());
-                            double preobMin = Double.parseDouble(minpreobr.getText().trim());
-                            double preobMax = Double.parseDouble(maxpreobr.getText().trim());
-                            double pribRasch = Double.parseDouble(raschpribor.getText().trim());
-
-                            double q = ((pribRasch / (pribMax - pribMin )) * (preobMax - preobMin )) + preobMin ;
-                            raschpreobr.setText(""+ q);
-                        }
-                        else if (x == 3)
-                        {
-                            double pribMin = Double.parseDouble(minpribor.getText().trim());
-                            double pribMax = Double.parseDouble(maxpribor.getText().trim());
-                            double preobMin = Double.parseDouble(minpreobr.getText().trim());
-                            double preobMax = Double.parseDouble(maxpreobr.getText().trim());
-                            double pribRasch = Double.parseDouble(raschpribor.getText().trim());
-
-                            double q = (pribRasch * (preobMax - preobMin ) / pribMax ) + preobMin ;
-                            raschpreobr.setText(""+ q);
+                            //error message
                         }
                     }
                 });
